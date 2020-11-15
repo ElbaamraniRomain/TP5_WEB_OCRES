@@ -1,24 +1,22 @@
-const { json } = require('express');
+//const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const axios = require('axios').default;
 var _ = require('lodash');
 
 const apikey = '866970c9';
-const apiUrl = 'http://www.omdbapi.com/';
-
 
 /* BDD */
 let movies = [
   {
-     id: 'tt4154796',
-     movie: 'Avengers : Endgame',
-     yearOfRelease: 2019,
-     duration: 181,
-     actors: ["Robert Downey Jr", "Chris Evans"],
-     poster: "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
-     boxOffice: "N/A",
-     rottenTomatoesScore: 94,
+     id: 'tt1375666',
+     movie: 'Inception',
+     yearOfRelease: 2010,
+     duration: 148, // en minutes,
+     actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page", "Tom Hardy"], 
+     poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg", // lien vers une image d'affiche,
+     boxOffice: "N/A",// en USD$,
+     rottenTomatoesScore: 87,
  }
 ]
 
@@ -91,7 +89,7 @@ router.delete('/:id', (req,res) =>
 /* GET movie by name */
 const getMovieByName = async (name) => {
 
-  const response = await axios.get(`http://www.omdbapi.com/`, {
+  const response = await axios.get("http://www.omdbapi.com/", {
       params:{
           apikey: apikey,
           type: 'movie',
