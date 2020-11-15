@@ -1,4 +1,4 @@
-# TP5 : API EL Baamrani Romain
+# TP5 : API EL Baamrani Romain - Duong Pierre
 
 A lire impérativement avant de commencer quoi que ce soit, ce sont les règles que vous devrez appliquer tout au long du semestre:
 
