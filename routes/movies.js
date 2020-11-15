@@ -8,7 +8,7 @@ const apikey = '866970c9';
 const apiUrl = 'http://www.omdbapi.com/';
 
 
-
+/* BDD */
 let movies = [
   {
      id: 'tt4154796',
@@ -23,7 +23,7 @@ let movies = [
 ]
 
   
-/* GET movies. */
+/* GET all movies. */
 router.get('/', (req, res) => {
     res.json(
     {
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
     });
   });
   
-// Get movie by id
+/* Get movie by id */
 router.get('/:id', (req, res) => 
 {
   const { id } = req.params;
@@ -43,7 +43,7 @@ router.get('/:id', (req, res) =>
     });
 });
 
-// Put new movie
+/* PUT a movie */
 router.put('/', async(req, res) => 
 {
   const movie = await getMovieByName(req.body.movieName);
@@ -59,7 +59,7 @@ router.put('/', async(req, res) =>
     });
 });
 
-// Post
+/* POST a movie bu id */
 router.post('/:id', (req,res) => 
 {
   const { id } = req.params;
@@ -74,7 +74,7 @@ router.post('/:id', (req,res) =>
     });
 });
 
-//Delete
+/* DELET a user by id */
 router.delete('/:id', (req,res) => 
 {
   const { id } = req.params;
@@ -88,37 +88,10 @@ router.delete('/:id', (req,res) =>
 });
 
 
-
-const getMovieById = async (id) => {
-
-  const response = await axios.get(apiUrl, {
-      params:{
-        apikey: apikey,
-        type: 'movie',
-        i:id
-      }
-  });
-
-  const data = await response.data; //Get the data
-
-  //Create a movie object with the data fetched => convert all string
-  const movie = {
-      id: id,
-      movie: data.Title,
-      yearOfRelease: parseInt(data.Year),
-      duration: parseInt(data.Runtime),
-      actors: data.Actors.split(','),
-      poster: data.Poster,
-      boxOffice: data.BoxOffice,
-      rottenTomatoesScore: parseInt(data.Ratings[1].Value)
-  }
-  return movie;
-}
-
-//Function that return a movie by its name
+/* GET movie by name */
 const getMovieByName = async (name) => {
 
-  const response = await axios.get(apiUrl, {
+  const response = await axios.get(`http://www.omdbapi.com/`, {
       params:{
           apikey: apikey,
           type: 'movie',
